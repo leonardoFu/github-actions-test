@@ -6,26 +6,33 @@ name: Node.js CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+    tags: ["v*"]
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 14.x
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+      run: |
+        npm install yarn -g 
+
+    - name: install
+      run: |
+        yarn install 
+    - name: build
+      run: |
+        yarn build 
+    - name: upload build
+      uses: actions/upload-artifact@v3
+      with:
+        name: build
+        # version number is set in package.json so need to include that
+        path: |
+          package.json
