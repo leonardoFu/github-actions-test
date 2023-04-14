@@ -85,7 +85,7 @@ jobs:
         - name: setup npm
           run: |
             touch .npmrc
-            echo //registry.npmjs.org/:_authToken=$"NPM_TOKEN" >> .npmrc
+            echo //registry.npmjs.org/:_authToken="$NPM_TOKEN" >> .npmrc
             echo "cat .npmrc"
             cat .npmrc
 
