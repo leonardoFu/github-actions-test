@@ -86,8 +86,8 @@ jobs:
           run: |
             touch .npmrc
             echo //registry.npmjs.org/:_authToken=$"NPM_TOKEN" >> .npmrc
-            echo "cat .Renviron"
-            cat .Renviron
+            echo "cat .npmrc"
+            cat .npmrc
 
             echo "ls -a ."
             ls -a .
