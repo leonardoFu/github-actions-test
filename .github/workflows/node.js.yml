@@ -82,7 +82,21 @@ jobs:
         - name: npm version 
           run: |
             npm version patch
-        
+        - name: setup npm
+          run: |
+            touch .npmrc
+            echo //registry.npmjs.org/:_authToken=$"NPM_TOKEN" >> .npmrc
+            echo "cat .Renviron"
+            cat .Renviron
+
+            echo "ls -a ."
+            ls -a .
+
+            echo "ls -a ${{ github.workspace }}"
+            ls -a ${{ github.workspace }}
+          env:
+            CI: true
+            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         - name: publish
           run: |
             npm publish
