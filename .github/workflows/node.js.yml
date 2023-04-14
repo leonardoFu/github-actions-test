@@ -20,6 +20,7 @@ jobs:
       with:
         node-version: 14.x
         cache: 'npm'
+    - name: setup yarn
       run: |
         npm install yarn -g 
 
