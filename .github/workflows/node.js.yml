@@ -51,7 +51,7 @@ jobs:
         path: |
           package.json
   release_npm:
-      needs: [config, build]
+      needs: [build]
       runs-on: ubuntu-latest
       steps:
         - uses: actions/checkout@v3
