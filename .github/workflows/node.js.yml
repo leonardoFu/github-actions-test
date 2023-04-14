@@ -82,12 +82,7 @@ jobs:
         - name: npm version 
           run: |
             npm version patch
-        - name: setup npm
-          run: |
-            ./setup_npm.sh
-          env:
-            CI: true
-            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        
         - name: publish
           run: |
             npm publish
