@@ -69,7 +69,8 @@ jobs:
         - name: use Node.js
           uses: actions/setup-node@v3
           with:
-            node-version-file: 14.x
+            node-version: 14.x
+            cache: 'yarn'
 
         - name: download build
           uses: actions/download-artifact@v3
