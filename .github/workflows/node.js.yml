@@ -9,10 +9,8 @@ on:
     tags: ["v*"]
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
-
+    environment: npm_token
     steps:
     - uses: actions/checkout@v3
 
