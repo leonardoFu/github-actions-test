@@ -54,9 +54,9 @@ jobs:
       steps:
         - uses: actions/checkout@v3
         - name: setup git
-        run: |
-          git config --global user.name 'leonardoFu'
-          git config --global user.email 'leonardoFu@users.noreply.github.com'
+          run: |
+            git config --global user.name 'leonardoFu'
+            git config --global user.email 'leonardoFu@users.noreply.github.com'
         - name: cache node_modules
           uses: actions/cache@v3
           env:
@@ -92,7 +92,7 @@ jobs:
           run: |
             npm publish
         - name: push back
-        run: |
-          git add .
-          git commit -am "Version auto published"
-          git push
+          run: |
+            git add .
+            git commit -am "Version auto published"
+            git push
