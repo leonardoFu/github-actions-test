@@ -5,9 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"Build finished\""
+    "build": "echo \"Build finished\"",
+    "changelog": "github-changes -o leonardoFu -r github-actions-test -b main --only-pulls --use-commit-body"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "github-changes": "^2.0.3"
+  }
 }
