@@ -62,6 +62,15 @@ jobs:
           run: |
             git config --global user.name 'leonardoFu'
             git config --global user.email 'leonardoFu@users.noreply.github.com'
+        - name: extract tag
+          id: extract_tag
+          uses: actions/github-script@v6
+          with:
+            script: |
+              const prefix = 'refs/tags/';
+              const ref = context.ref;
+              return ref.startsWith(prefix) ? ref.substring(prefix.length) : '';
+            result-encoding: string
         - name: cache node_modules
           uses: actions/cache@v3
           env:
@@ -86,7 +95,9 @@ jobs:
             name: build
         - name: npm version 
           run: |
-            npm version patch
+            zx scripts/set-packages-version.mjs
+          env: 
+            TAG: ${{steps.extract_tag.outputs.result}}
         - name: setup npm
           run: |
             touch .npmrc
@@ -102,15 +113,6 @@ jobs:
           env:
             CI: true
             NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        - name: extract tag
-          id: extract_tag
-          uses: actions/github-script@v6
-          with:
-            script: |
-              const prefix = 'refs/tags/';
-              const ref = context.ref;
-              return ref.startsWith(prefix) ? ref.substring(prefix.length) : '';
-            result-encoding: string
         - name: publish
           run: |
             npm publish

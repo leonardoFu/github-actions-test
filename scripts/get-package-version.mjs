@@ -1,6 +1,8 @@
-const versionHelper = require('./version-helper.mjs');
+import versionHelper from './version-helper.mjs';
 
-const latestVersion = versionHelper.getLatestVersionTag();
+
+
+const latestVersion = await versionHelper.getLatestVersionTag();
 export function getPackageVersion() {
   let newVersion = '';
   try {
@@ -9,8 +11,9 @@ export function getPackageVersion() {
     }
       
     const tag = process.env.TAG;
-    newVersion = tag.substring(1);
-    if (!versionParser.isGreaterOrEqual(newVersion, latestVersion)) {
+    newVersion = versionHelper.removeVersionPrefix(tag);
+    console.log(newVersion, ' ', versionHelper.removeVersionPrefix(latestVersion.toString()))
+    if (!versionHelper.isGreaterOrEqual(newVersion, versionHelper.removeVersionPrefix(latestVersion.toString()))) {
       throw new Error(
         `New version "${newVersion}" is not >= latest version "${latestVersion}" on this branch.`
       );
