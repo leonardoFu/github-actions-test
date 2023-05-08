@@ -57,7 +57,18 @@ jobs:
       environment: npm_token
       runs-on: ubuntu-latest
       steps:
+        - name: extract tag
+          id: extract_tag
+          uses: actions/github-script@v6
+          with:
+            script: |
+              const prefix = 'refs/tags/';
+              const ref = context.ref;
+              return ref.startsWith(prefix) ? ref.substring(prefix.length) : '';
+            result-encoding: string
         - uses: actions/checkout@v3
+          with:
+            ref: 'main'
         - name: setup git
           run: |
             git config --global user.name 'leonardoFu'
@@ -70,15 +81,7 @@ jobs:
         - name: install
           run: |
             yarn install
-        - name: extract tag
-          id: extract_tag
-          uses: actions/github-script@v6
-          with:
-            script: |
-              const prefix = 'refs/tags/';
-              const ref = context.ref;
-              return ref.startsWith(prefix) ? ref.substring(prefix.length) : '';
-            result-encoding: string
+        
         - name: cache node_modules
           uses: actions/cache@v3
           env:
