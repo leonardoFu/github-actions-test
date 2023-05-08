@@ -52,6 +52,7 @@ jobs:
         path: |
           package.json
   release_npm:
+      if: ${{ startsWith(github.ref, 'refs/tags/') }}
       needs: [build]
       environment: npm_token
       runs-on: ubuntu-latest
