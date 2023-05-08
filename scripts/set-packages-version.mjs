@@ -1,9 +1,10 @@
 #!/usr/bin/env zx
 
 import { getPackageVersion } from './get-package-version.mjs'
-
-import pkgJson from '../package.json';
+import path from 'path';
 import versionHelper from './version-helper.mjs';
+const pkgJson = await fs.readJson(path.resolve(__dirname, '../package.json'));
+
 const version = getPackageVersion();
 
 if (!version) {
@@ -14,12 +15,18 @@ if (!version) {
 
 pkgJson.version = version;
 
-const tag = versionHelper.getVersionTag(version);
+const tag = versionHelper.getVersionTag(versionHelper.addVersionPrefix(version));
 
 pkgJson.publishConfig = {
     tag: tag
 };
 
-const jsonPath = path.join(__dirname, 'package.json');
+const jsonPath = path.join(__dirname, '../package.json');
 
-await fs.outputJson(jsonPath, pkgJson);
+await fs.outputJson(
+    jsonPath,
+    pkgJson,
+    {
+        spaces: 2
+    }
+)
