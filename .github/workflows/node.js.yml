@@ -62,6 +62,10 @@ jobs:
           run: |
             git config --global user.name 'leonardoFu'
             git config --global user.email 'leonardoFu@users.noreply.github.com'
+        
+        - name: setup zx
+          run: |
+            npm install zx -g
         - name: extract tag
           id: extract_tag
           uses: actions/github-script@v6
