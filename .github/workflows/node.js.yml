@@ -66,6 +66,10 @@ jobs:
         - name: setup zx
           run: |
             npm install zx -g
+
+        - name: install
+          run: |
+            yarn install
         - name: extract tag
           id: extract_tag
           uses: actions/github-script@v6
