@@ -98,11 +98,17 @@ jobs:
           env:
             CI: true
             NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
         - name: publish
           run: |
             npm publish
+        
         - name: push back
           run: |
             git add .
             git commit -am "Version auto published"
             git push
+
+
+
+
