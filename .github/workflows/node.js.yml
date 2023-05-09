@@ -128,14 +128,37 @@ jobs:
         - name: publish
           run: |
             npm publish
-        - name: push back
+        - name: push to release branch
           uses: EndBug/add-and-commit@v9
           with: 
             add: "."
             default_author: github_actor
             fetch: true
-            push: "origin main --force --set-upstream"
+            new_branch: release
+            push: "--force --set-upstream"
             message: 'Auto Publish npm version ${{steps.extract_tag.outputs.result}}'
+        - name: create PR from back to main
+          uses: actions/github-script@v6
+          env: 
+            RELEASED_VERSION: ${{steps.extract_tag.outputs.result}}
+          with: 
+            script: |
+              const context = github.context;
+              const owner = context.repo.owner;
+              const repo = context.repo.repo;
+              const base = "main";
+              const head = "release";
+              const title = "new version published: " + process.env.RELEASED_VERSION;
+              const body = "";
+              github.pulls.create({
+                owner,
+                repo,
+                base,
+                head,
+                title,
+                body
+              });
+            
           # run: |
           #   git add .
           #   git commit -am "Version auto published"
