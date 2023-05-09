@@ -149,7 +149,7 @@ jobs:
               const head = "release";
               const title = "new version published: " + process.env.RELEASED_VERSION;
               const body = "";
-              github.pulls.create({
+              github.rest.pulls.create({
                 owner,
                 repo,
                 base,
