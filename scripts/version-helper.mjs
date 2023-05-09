@@ -1,5 +1,5 @@
 
-const semver = require('semver');
+import semver from 'semver';
 const VALID_VERSION_REGEX =
     /^v(\d+)\.(\d+)\.(\d+)(?:-([a-zA-Z][0-9a-zA-Z-]*))?/;
 
