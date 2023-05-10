@@ -1,6 +1,6 @@
 {
   "name": "test-npm-leo-666",
-  "version": "1.0.8",
+  "version": "1.0.8-alpha.10",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -23,6 +23,6 @@
     "semver": "^7.5.0"
   },
   "publishConfig": {
-    "tag": "latest"
+    "tag": "alpha"
   }
 }
