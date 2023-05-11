@@ -1,7 +1,7 @@
 {
   "name": "test-npm-leo-666",
   "version": "1.0.8",
-  "description": "",
+  "description": "调整description",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
