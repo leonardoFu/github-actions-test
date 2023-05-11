@@ -1,0 +1,15 @@
+name: PR completed
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  pr_completed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Send notification
+        run: |
+          echo "PR completed by ${GITHUB_ACTOR}"
+          echo "PR was merged by ${GITHUB_EVENT_PULL_REQUEST_MERGED_BY_LOGIN}"
