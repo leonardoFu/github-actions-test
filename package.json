@@ -1,7 +1,7 @@
 {
   "name": "test-npm-leo-666",
   "version": "1.0.8",
-  "description": "在featA分支调整description",
+  "description": "再次调整description-b",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
