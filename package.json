@@ -10,7 +10,7 @@
     "e2e": "mocha tests/e2e/setup.js --timeout 40000 --exit"
   },
   "keywords": [],
-  "author": "",
+  "author": "fuyuhao",
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.3.7",
